@@ -1,0 +1,36 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Home>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+
+
+@{
+	var selection = Umbraco.Content(1058)
+    .Descendants()
+    .Where(x => x.IsVisible() && (x.IsDocumentType("destinationArticle") ||
+	x.IsDocumentType("newsArticle")||
+	x.IsDocumentType("reviewArticle") ))
+    .OrderByDescending(x => x.CreateDate);
+}
+<div style=" display: flex; flex-flow: wrap;">
+	@foreach (var item in selection)
+	{
+		<div style=" padding: 15px;">
+		    @{
+		    var title = item.Value("titleCom");
+		    }
+		<h3>@title </h3> 
+	
+		
+		    @{
+		    var image = item.Value<IPublishedContent>("imageCom");
+		    }
+		 <a href="@item.Url()"> <img src="@image.Url()" style="width:300px;height:300px;float: left;"/></a>
+		</div>
+	
+	}
+
+</div>

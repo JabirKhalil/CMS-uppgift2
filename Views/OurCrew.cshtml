@@ -1,0 +1,55 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.OurCrew>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Layout.cshtml";
+}
+
+
+
+
+<!-- Page Content -->
+<div class="container pt-5">
+    
+ 
+    
+  <div class="row">
+       @{
+	var crewMembers = Umbraco.Content(2062)
+    .ChildrenOfType("crewMember")
+    .Where(x => x.IsVisible())
+    .OrderBy(x => x.Name);
+}
+
+	@foreach (var crewMember in crewMembers)
+	{
+	
+
+
+var image = crewMember.Value<IPublishedContent>("memberImage");
+
+	    <!-- Team Member 1 -->
+    
+
+
+
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-0 shadow">
+        <img src="@image.Url()" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+          <h5 class="card-title mb-0">@crewMember.Value("memberName")</h5>
+          <div class="card-text text-black-50">@crewMember.Value("jobTitle")</div>
+          <div><span>@crewMember.Value("description")</span></div>
+        </div>
+      </div>
+    </div>
+	
+
+	}
+
+    
+  </div>
+  <!-- /.row -->
+
+</div>
+<!-- /.container -->

@@ -1,0 +1,13 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.NewsArticle>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+
+<div><h1>@Model.Value("newsArticleTitle")</h1></div>
+<div><img src="@Model.NewsArticleImage.Url()" style="width:500px;height:500px;"/></div>
+<div>@Model.Value("newsArticleContent")</div>
+
+
