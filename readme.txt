@@ -13,7 +13,7 @@ password: standard@standard
 
 ------- Users --------
 login: editor@editor
-email: editor@editor.com
+email: editor@editor
 password: editor@editor
 
 login: review@review
